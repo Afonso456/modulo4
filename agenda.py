@@ -10,79 +10,80 @@ operações:
 
 import numpy as np
 
-MAX_ITENS= 100
-nr_contactos= 0
+MAX_ITENS= 3
 
-nomes= np.empty(nr_contactos, dtype= "U50")
-emails= np.empty(nr_contactos, dtype= "U50")
-numeros= np.empty(nr_contactos, dtype= "U9")
+def adicionar(nomes, numeros, emails,nr_contactos):
+    if nr_contactos == MAX_ITENS:
+        print("A agenda de contactos esta cheia")
+        return nr_contactos
+    nomes[nr_contactos]= input("Nome:")
+    numeros[nr_contactos]= input("Numero:")
+    emails[nr_contactos]= input("Email:")
+    nr_contactos += 1
+    return nr_contactos
 
-def adicionar(nome, numero, email,nr_contactos):
+def listar(nomes,numeros,emails,nr_contactos):
     for i in range(nr_contactos):
-        if nomes[i] == "":
-            nomes[i] = nome
-            numeros[i] = numero
-            emails[i] = email
-            nr_contactos+= 1
-            return nr_contactos
+        print(f"N-{nomes[i]}\tNº-{numeros[i]}\tE-{emails[i]}")
 
-def listar():
+def procurar(nomes,numeros,emails,nr_contactos):
+    nome_procurar= input("Nome a procurar:")
     for i in range(nr_contactos):
-        if nomes[i] != "":
-            print(f"N-{nomes[i]}\tNº-{numeros[i]}\tE-{emails[i]}")
-        else:
-            break
-
-def procurar(nome):
-    for i in range(nr_contactos):
-        if nomes[i] == nome:
-            print(f"\nN-{nome}\tNº-{numeros[i]}\tE-{emails[i]} \n")
-            return
-    print("Contacto não encontrado")
-    
-def apagar():
-    nome = input("Nome:")
-    for i in range(nr_contactos):
-        if nomes[i] == nome:
-            nomes[i] = ""
-            numeros[i] = ""
-            emails[i] = ""
+        if nome_procurar in nomes[i]:
+            print(f"\nN-{nomes}\tNº-{numeros[i]}\tE-{emails[i]} \n")
             return
     print("Contacto não encontrado")
 
-def editar(nome,numero,email):
-    global nr_contactos
+def apagar(nomes,numeros,emails,nr_contactos):
+    nome_apagar= input("Nome a apagar:")
+    for i in range(nr_contactos):
+        if nome_apagar in nomes[i]:
+            print(f"\nN-{nomes}\tNº-{numeros[i]}\tE-{emails[i]} \n")
+        op= input("Deseja apagar o contacto(s/n):\n")
+        if op in "sS":
+            for k in range(i,nr_contactos):
+                if k == MAX_ITENS - 1:
+                    break
+                nomes[k] = nomes[k+1]
+                numeros[k] = numeros[k+1]
+                emails[k] = emails[k+1]
+            nr_contactos -= 1
+    return nr_contactos
+
+def editar(nomes,numeros,emails,nr_contactos):
     op= ""
     op= input("O que deseja editar(nome,numero,emal):\n")
     for i in range(nr_contactos):
         if op == "nome":
-            nomes[i] == nome
+            nomes[i] == nomes
         elif op == "numero":
-            numeros[i] == numero
+            numeros[i] == numeros
         elif op == "email":
-            emails[i] == email
+            emails[i] == emails
 
 def sair():
     print("Adeus :)")
     exit()
 
 def menu():
-    while True:
+    nr_contactos= 0
+
+    nomes= np.empty(MAX_ITENS, dtype= "U50")
+    emails= np.empty(MAX_ITENS, dtype= "U50")
+    numeros= np.empty(MAX_ITENS, dtype= "U9")
+
+    while op != 6:
         op = input("1:Adicionar\n2:Listar\n3:Procurar\n4:Apagar\n5:Editar\n6:Terminar\n")
         if op == "1":
-            nome= input("Nome:")
-            numero= input("Numero:")
-            email= input("Email:")
-            adicionar(nome,numero,email,nr_contactos)
+            nr_contactos= adicionar(nomes,numeros,emails,nr_contactos)
         elif op == "2":
-            listar()
+            listar(nomes,numeros,emails,nr_contactos)
         elif op == "3":
-            nome= input("Nome:")
-            procurar(nome)
+            procurar(nomes,numeros,emails,nr_contactos)
         elif op == "4":
-            apagar()
+            nr_contactos= apagar(nomes,numeros,emails,nr_contactos)
         elif op == "5":
-            editar(nome,numero,email)
+            editar(nomes,numeros,emails,nr_contactos)
         elif op == "6":
             sair()
 
