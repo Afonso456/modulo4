@@ -30,7 +30,7 @@ def procurar(nomes,numeros,emails,nr_contactos):
     nome_procurar= input("Nome a procurar:")
     for i in range(nr_contactos):
         if nome_procurar in nomes[i]:
-            print(f"\nN-{nomes}\tNº-{numeros[i]}\tE-{emails[i]} \n")
+            print(f"\nN-{nomes[i]}\tNº-{numeros[i]}\tE-{emails[i]} \n")
             return
     print("Contacto não encontrado")
 
@@ -51,15 +51,22 @@ def apagar(nomes,numeros,emails,nr_contactos):
     return nr_contactos
 
 def editar(nomes,numeros,emails,nr_contactos):
-    op= ""
-    op= input("O que deseja editar(nome,numero,emal):\n")
+    nome= input("Nome:")
     for i in range(nr_contactos):
-        if op == "nome":
-            nomes[i] == nomes
-        elif op == "numero":
-            numeros[i] == numeros
-        elif op == "email":
-            emails[i] == emails
+        if nome in nomes[i]:
+            print(f"{nomes[i]} - {numeros[i]} - {emails[i]}")
+        op = input("Pretend editar o contacto (s/n):")
+        if op != "s":
+            continue
+        novo_nome= input("Introduza um novo nome ou deixe em branco para não alterar:")
+        novo_numero= input("Introduza um novo numero ou deixe em branco para não alterar:")
+        novo_email= input("Introduza um novo email ou deixe em branco para não alterar:")
+        if novo_nome.strip() != "":
+            nomes[i] = novo_nome.strip()
+        if novo_numero.strip() != "":
+            numeros[i] = novo_numero.strip()
+        if novo_email != "":
+            emails[i] = novo_email.strip()
 
 def sair():
     print("Adeus :)")
@@ -71,7 +78,7 @@ def menu():
     nomes= np.empty(MAX_ITENS, dtype= "U50")
     emails= np.empty(MAX_ITENS, dtype= "U50")
     numeros= np.empty(MAX_ITENS, dtype= "U9")
-
+    op= 0
     while op != 6:
         op = input("1:Adicionar\n2:Listar\n3:Procurar\n4:Apagar\n5:Editar\n6:Terminar\n")
         if op == "1":
