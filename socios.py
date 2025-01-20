@@ -1,3 +1,7 @@
+"""
+Programa que lê o nome de varias pessoase indica se são socios de dois clubes diferentes
+"""
+
 import numpy as np
 
 socios_a= np.array(["joaquim" "maria" "joão" "luis"])

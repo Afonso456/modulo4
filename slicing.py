@@ -1,5 +1,5 @@
 """
-
+Função para separar as letras de uma string
 """
 
 nome= "Joaquim-Silva"

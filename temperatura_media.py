@@ -1,3 +1,7 @@
+"""
+Programa que lê a temperatura de uma cidade durante uma ano e indica a temperatura media
+"""
+
 import numpy as np
 soma=0
 NR_MESES= 12
