@@ -13,7 +13,7 @@ nome_invertido= nome[::-1]
 print(nome_invertido)
 nome_2_2_letras= nome[::2]
 print(nome_2_2_letras)
-print(nome[-1]) #da a posição da ultima letra da string
+print(nome[-1]) #dá a posição da ultima letra da string
 
 ultimo_contrario= nome[13:7:-1]
 print(ultimo_contrario)

@@ -1,6 +1,5 @@
 """
 Programa que lê o nome de duas pessoas e diz se são da mesma familia ou não
-
 """
 
 def familiares(nome1,nome2):
@@ -8,11 +7,12 @@ def familiares(nome1,nome2):
     nome_separado2= nome2.split(" ")
     if len(nome_separado1) < 2 and len(nome_separado2) < 2:
         return False
-    penultimo1 = nome_separado1[-2]
-    penultimo2 = nome_separado2[-2]
-    ultimo1 = nome_separado1[-1]
-    ultimo2 = nome_separado2[-1]
-    return penultimo1 == penultimo2 and ultimo1 == ultimo2
+    for i in nome1[1:]: #verificar se um dos dois ultimos nomes sºao iguais
+        for k in nome2[1:]:
+            if i == k:
+                return True 
+    return False
+
 
 
 
