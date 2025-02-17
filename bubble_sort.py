@@ -17,8 +17,6 @@ def bubble_sort(vetor):
                 vetor[j]= vetor[j+1]
                 vetor[j+1]= t
 
-
-
 print(numeros)
 bubble_sort(numeros)
 print(numeros)

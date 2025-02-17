@@ -58,7 +58,7 @@ def menu():
     op = 0
     contactos= np.zeros(NR_MAX, dtype= "U30")
     while op != 4:
-        op= input("1.Entrada\n2.Listar\n3.Procurar\n4.Terminar\n")
+        op= input("1.Adicionar\n2.Listar\n3.Procurar\n4.Terminar\n")
         if op == "1":
             nome= input("Nome:")
             data= input("Data de nascimento:")
